@@ -29,6 +29,8 @@ Where am I? What is here? How do I ask the system for help?
 
 ## Setup
 
+### Local Clone
+
 ```bash
 git clone <REPO_URL>
 cd linux-basics-lab
@@ -42,3 +44,54 @@ less labs/part-01-terminal-survival.md
 
 If students are not comfortable with `less` yet, they can open the file in a
 browser or editor instead.
+
+### Disposable Docker Lab
+
+Build the image:
+
+```bash
+docker build -t linux-basics-lab .
+```
+
+Start a fresh disposable lab:
+
+```bash
+docker run --rm -it linux-basics-lab
+```
+
+If you want `date` inside the container to use a specific timezone, pass `TZ`:
+
+```bash
+docker run --rm -it -e TZ=America/Los_Angeles linux-basics-lab
+```
+
+Inside the container, start Part 1 with:
+
+```bash
+start-lab
+```
+
+Check progress with:
+
+```bash
+grade-part1
+```
+
+The container is intentionally disposable. When the student exits, command
+history and progress disappear with the container.
+
+## Progress Checker
+
+Part 1 includes a history-based progress checker:
+
+```bash
+scripts/grade_part_01_terminal_survival.py
+```
+
+The Docker image configures the student shell to append history after each
+command and provides a `grade-part1` alias. For local testing outside Docker,
+you may need to run `history -a` before using the checker.
+
+Students should use their host operating system's screenshot tool to capture
+the terminal after running `grade-part1`. The container does not include or need
+a screenshot utility.

@@ -21,13 +21,21 @@ and use built-in help tools.
 
 ## Before You Start
 
-Open a terminal and move into this repository:
+Open a terminal.
+
+If you are using the lab container, you should already be in the lab directory.
+You can start this lab with:
+
+```bash
+start-lab
+```
+
+If you cloned the repository directly on your computer, move into the
+repository:
 
 ```bash
 cd linux-basics-lab
 ```
-
-If you cloned the repository somewhere else, use your own path.
 
 ## Activity 1: Where Am I?
 
@@ -114,7 +122,9 @@ Checkpoint:
 
 - What username are you using?
 - What machine are you on?
-- Does the displayed time match your local time?
+- What time and time zone are shown?
+- Does the displayed time match your local time, or is the container using a
+  different time zone?
 
 ## Activity 6: Command Memory
 
@@ -178,7 +188,14 @@ Use only commands from this lab to answer these questions:
 
 ## Exit Ticket
 
-Before leaving, write three sentences:
+Before leaving, run:
+
+```bash
+grade-part1
+```
+
+Use your computer's screenshot tool to capture the terminal window showing your
+progress check. Then write three sentences:
 
 1. One command you feel confident using.
 2. One command that still feels confusing.
