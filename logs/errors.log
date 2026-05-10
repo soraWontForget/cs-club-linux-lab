@@ -1,0 +1,10 @@
+2026-05-09 09:02:44 WARN  command typo detected: sl
+2026-05-09 09:03:01 ERROR missing file requested: missing.txt
+2026-05-09 09:04:17 WARN  hidden file not visible without -a
+2026-05-09 09:05:33 ERROR manual page exited without q key note
+2026-05-09 09:07:09 WARN  progress checker run before history flush
+2026-05-09 09:10:42 ERROR cd target did not exist: log
+2026-05-09 09:12:58 WARN  parent directory confused with home directory
+2026-05-09 09:16:22 ERROR app.log opened with cat instead of less
+2026-05-09 09:18:40 WARN  tail follower stopped with Ctrl+C
+2026-05-09 09:21:03 ERROR final checkpoint missing screenshot

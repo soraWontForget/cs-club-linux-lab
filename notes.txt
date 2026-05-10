@@ -1,0 +1,8 @@
+Linux Basics Lab Notes
+
+The terminal is a text-based way to talk to the computer.
+Commands usually have a name, options, and arguments.
+Files are easier to inspect when you choose the right viewing command.
+Use cat for short files and less for longer files.
+Use head and tail when you only need the beginning or end.
+Use wc when you need a quick count.

@@ -1,0 +1,22 @@
+2026-05-09 09:00:00 INFO  app boot requested
+2026-05-09 09:00:01 INFO  loading terminal basics module
+2026-05-09 09:00:02 INFO  loaded lab metadata
+2026-05-09 09:00:03 INFO  checking practice directory
+2026-05-09 09:00:04 INFO  practice directory ready
+2026-05-09 09:01:10 INFO  student opened part 1
+2026-05-09 09:02:15 INFO  student ran pwd
+2026-05-09 09:03:22 INFO  student listed lab-files
+2026-05-09 09:04:31 INFO  student viewed hidden entries
+2026-05-09 09:05:44 INFO  student checked command help
+2026-05-09 09:07:02 INFO  part 1 progress checker started
+2026-05-09 09:07:03 INFO  part 1 progress checker finished
+2026-05-09 09:10:00 INFO  loading filesystem navigation module
+2026-05-09 09:11:12 INFO  student changed into logs
+2026-05-09 09:12:20 INFO  student returned to lab directory
+2026-05-09 09:13:35 INFO  student ran tree
+2026-05-09 09:15:00 INFO  loading file reading module
+2026-05-09 09:16:08 INFO  student opened notes.txt
+2026-05-09 09:17:18 INFO  student opened app log with less
+2026-05-09 09:18:30 INFO  waiting for tail follower
+2026-05-09 09:19:45 INFO  file reading checkpoint ready
+2026-05-09 09:20:00 INFO  app idle

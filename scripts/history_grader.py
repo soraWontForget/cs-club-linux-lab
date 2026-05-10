@@ -219,7 +219,8 @@ def positional_args(command: Command) -> list[str]:
     return args
 
 
-def is_ls(
+def is_command(
+    command_name: str,
     *,
     required_flags: Iterable[str] = (),
     exact_flags: Iterable[str] | None = None,
@@ -231,7 +232,7 @@ def is_ls(
     normalized_target = target.rstrip("/") if target else None
 
     def matcher(command: Command) -> bool:
-        if command.name != "ls":
+        if command.name != command_name:
             return False
 
         positions = positional_args(command)
@@ -247,6 +248,22 @@ def is_ls(
         return required.issubset(letters)
 
     return matcher
+
+
+def is_ls(
+    *,
+    required_flags: Iterable[str] = (),
+    exact_flags: Iterable[str] | None = None,
+    target: str | None = None,
+    no_targets: bool = False,
+) -> Callable[[Command], bool]:
+    return is_command(
+        "ls",
+        required_flags=required_flags,
+        exact_flags=exact_flags,
+        target=target,
+        no_targets=no_targets,
+    )
 
 
 def is_cd(target: str) -> Callable[[Command], bool]:

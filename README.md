@@ -10,6 +10,7 @@ the first time.
 
 1. [Terminal Survival](labs/part-01-terminal-survival.md)
 2. [Moving Around the Filesystem](labs/part-02-filesystem-navigation.md)
+3. [Reading Files](labs/part-03-reading-files.md)
 
 ## Part 1: Terminal Survival
 
@@ -42,6 +43,17 @@ structure:
 - `.`
 - `..`
 - `~`
+
+## Part 3: Reading Files
+
+Students learn how to inspect file contents from the terminal:
+
+- `cat`
+- `less`
+- `head`
+- `tail`
+- `wc`
+- `tail -f`
 
 ## Setup
 
@@ -93,11 +105,18 @@ Start Part 2 with:
 start-lab2
 ```
 
+Start Part 3 with:
+
+```bash
+start-lab3
+```
+
 Check progress with:
 
 ```bash
 grade-part1
 grade-part2
+grade-part3
 ```
 
 The container is intentionally disposable. When the student exits, command
@@ -110,11 +129,13 @@ Each part includes a history-based progress checker:
 ```bash
 scripts/grade_part_01_terminal_survival.py
 scripts/grade_part_02_filesystem_navigation.py
+scripts/grade_part_03_reading_files.py
 ```
 
 The Docker image configures the student shell to append history after each
-command and provides `grade-part1` and `grade-part2` aliases. For local testing
-outside Docker, you may need to run `history -a` before using a checker.
+command and provides `grade-part1`, `grade-part2`, and `grade-part3` aliases.
+For local testing outside Docker, you may need to run `history -a` before using
+a checker.
 
 Students should use their host operating system's screenshot tool to capture
 the terminal after running the relevant `grade-part` command. The container
