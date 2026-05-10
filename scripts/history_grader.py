@@ -250,6 +250,33 @@ def is_command(
     return matcher
 
 
+def is_command_positions(
+    command_name: str,
+    expected_positions: Iterable[str],
+    *,
+    required_flags: Iterable[str] = (),
+    exact_flags: Iterable[str] | None = None,
+) -> Callable[[Command], bool]:
+    required = set(required_flags)
+    exact = set(exact_flags) if exact_flags is not None else None
+    expected = [position.rstrip("/") for position in expected_positions]
+
+    def matcher(command: Command) -> bool:
+        if command.name != command_name:
+            return False
+
+        if positional_args(command) != expected:
+            return False
+
+        letters, unknown_option = option_profile(command)
+        if exact is not None:
+            return not unknown_option and letters == exact
+
+        return required.issubset(letters)
+
+    return matcher
+
+
 def is_ls(
     *,
     required_flags: Iterable[str] = (),
