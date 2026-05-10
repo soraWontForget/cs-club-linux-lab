@@ -9,6 +9,7 @@ the first time.
 ## Lab Parts
 
 1. [Terminal Survival](labs/part-01-terminal-survival.md)
+2. [Moving Around the Filesystem](labs/part-02-filesystem-navigation.md)
 
 ## Part 1: Terminal Survival
 
@@ -26,6 +27,21 @@ Students learn the first commands they need to survive in a Linux terminal:
 
 This part focuses on confidence, orientation, and basic directory awareness:
 Where am I? What is here? How do I ask the system for help?
+
+## Part 2: Moving Around the Filesystem
+
+Students learn how to move through the filesystem and inspect directory
+structure:
+
+- `cd`
+- `ls`
+- `ls -l`
+- `ls -a`
+- `ls -la`
+- `tree`
+- `.`
+- `..`
+- `~`
 
 ## Setup
 
@@ -68,30 +84,38 @@ docker run --rm -it -e TZ=America/Los_Angeles linux-basics-lab
 Inside the container, start Part 1 with:
 
 ```bash
-start-lab
+start-lab1
+```
+
+Start Part 2 with:
+
+```bash
+start-lab2
 ```
 
 Check progress with:
 
 ```bash
 grade-part1
+grade-part2
 ```
 
 The container is intentionally disposable. When the student exits, command
 history and progress disappear with the container.
 
-## Progress Checker
+## Progress Checkers
 
-Part 1 includes a history-based progress checker:
+Each part includes a history-based progress checker:
 
 ```bash
 scripts/grade_part_01_terminal_survival.py
+scripts/grade_part_02_filesystem_navigation.py
 ```
 
 The Docker image configures the student shell to append history after each
-command and provides a `grade-part1` alias. For local testing outside Docker,
-you may need to run `history -a` before using the checker.
+command and provides `grade-part1` and `grade-part2` aliases. For local testing
+outside Docker, you may need to run `history -a` before using a checker.
 
 Students should use their host operating system's screenshot tool to capture
-the terminal after running `grade-part1`. The container does not include or need
-a screenshot utility.
+the terminal after running the relevant `grade-part` command. The container
+does not include or need a screenshot utility.

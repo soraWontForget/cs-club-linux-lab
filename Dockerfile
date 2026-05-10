@@ -12,6 +12,7 @@ RUN apt-get update \
         manpages \
         ncurses-bin \
         python3 \
+        tree \
         tzdata \
     && rm -rf /var/lib/apt/lists/*
 
@@ -21,9 +22,14 @@ WORKDIR /opt/linux-basics-lab
 COPY . /opt/linux-basics-lab
 COPY docker/student.bashrc /home/student/.bashrc
 
-RUN chmod +x /opt/linux-basics-lab/scripts/grade_part_01_terminal_survival.py \
-    && chown -R student:student /opt/linux-basics-lab /home/student
+RUN chmod +x /opt/linux-basics-lab/scripts/grade_part_*.py \
+    && ln -s /opt/linux-basics-lab /home/student/lab \
+    && chown -R student:student /opt/linux-basics-lab \
+    && chown student:student /home/student /home/student/.bashrc \
+    && chown -h student:student /home/student/lab
 
 USER student
+
+WORKDIR /home/student/lab
 
 CMD ["/bin/bash"]

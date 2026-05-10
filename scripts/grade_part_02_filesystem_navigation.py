@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Progress checker for Part 1: Terminal Survival."""
+"""Progress checker for Part 2: Moving Around the Filesystem."""
 
 from __future__ import annotations
 
@@ -11,12 +11,13 @@ from pathlib import Path
 try:
     from .history_grader import (
         Check,
+        Command,
         discover_history_files,
         grade as grade_commands,
-        has_help,
+        is_cd,
         is_ls,
-        is_man_page,
         is_simple,
+        is_tree,
         load_commands,
         parse_history_lines,
         print_text_report,
@@ -24,49 +25,42 @@ try:
 except ImportError:
     from history_grader import (
         Check,
+        Command,
         discover_history_files,
         grade as grade_commands,
-        has_help,
+        is_cd,
         is_ls,
-        is_man_page,
         is_simple,
+        is_tree,
         load_commands,
         parse_history_lines,
         print_text_report,
     )
 
 
-LAB_ID = "part-01-terminal-survival"
-TITLE = "Part 1: Terminal Survival"
+LAB_ID = "part-02-filesystem-navigation"
+TITLE = "Part 2: Moving Around the Filesystem"
 
 CHECKS: tuple[Check, ...] = (
+    Check("Activity 1", "Go to `/home/student/lab`", is_cd("/home/student/lab")),
     Check("Activity 1", "Run `pwd`", is_simple("pwd")),
-    Check("Activity 2", "Run bare `ls`", is_ls(exact_flags=set(), no_targets=True)),
-    Check("Activity 2", "List `lab-files`", is_ls(exact_flags=set(), target="lab-files")),
-    Check("Activity 2", "List `lab-files/campus`", is_ls(exact_flags=set(), target="lab-files/campus")),
-    Check("Activity 2", "List `lab-files/campus/clubs`", is_ls(exact_flags=set(), target="lab-files/campus/clubs")),
-    Check("Activity 2", "List `lab-files/campus/classes`", is_ls(exact_flags=set(), target="lab-files/campus/classes")),
-    Check("Activity 3", "Run `ls -l`", is_ls(exact_flags={"l"}, no_targets=True)),
-    Check("Activity 3", "Run `ls -a`", is_ls(exact_flags={"a"}, no_targets=True)),
-    Check("Activity 3", "Run `ls -la` or `ls -al`", is_ls(exact_flags={"l", "a"}, no_targets=True)),
-    Check(
-        "Activity 3",
-        "Run `ls -lh lab-files/campus/classes`",
-        is_ls(exact_flags={"l", "h"}, target="lab-files/campus/classes"),
-    ),
-    Check("Activity 4", "Run `clear`", is_simple("clear")),
-    Check("Activity 5", "Run `whoami`", is_simple("whoami")),
-    Check("Activity 5", "Run `hostname`", is_simple("hostname")),
-    Check("Activity 5", "Run `date`", is_simple("date")),
-    Check("Activity 6", "Run `history`", is_simple("history")),
-    Check("Activity 7", "Run `ls --help`", has_help("ls")),
-    Check("Activity 7", "Run `date --help`", has_help("date")),
-    Check("Activity 7", "Run `whoami --help`", has_help("whoami")),
-    Check("Activity 7", "Run `man ls`", is_man_page("ls")),
+    Check("Activity 1", "Run bare `ls`", is_ls(exact_flags=set(), no_targets=True)),
+    Check("Activity 2", "Run `ls -l`", is_ls(exact_flags={"l"}, no_targets=True)),
+    Check("Activity 2", "Run `ls -a`", is_ls(exact_flags={"a"}, no_targets=True)),
+    Check("Activity 2", "Run `ls -la` or `ls -al`", is_ls(exact_flags={"l", "a"}, no_targets=True)),
+    Check("Activity 3", "Move into `logs`", is_cd("logs")),
+    Check("Activity 4", "Move back up with `cd ..`", is_cd("..")),
+    Check("Activity 5", "Jump home with `cd ~`", is_cd("~")),
+    Check("Activity 5", "Return with `cd ~/lab`", is_cd("~/lab")),
+    Check("Activity 6", "List the current directory with `ls .`", is_ls(exact_flags=set(), target=".")),
+    Check("Activity 6", "List the parent directory with `ls ..`", is_ls(exact_flags=set(), target="..")),
+    Check("Activity 6", "Move with `cd ./logs`", is_cd("./logs")),
+    Check("Activity 7", "Run bare `tree`", is_tree()),
+    Check("Activity 7", "Run `tree logs`", is_tree("logs")),
 )
 
 
-def grade(commands):
+def grade(commands: list[Command]):
     return grade_commands(commands, CHECKS)
 
 
