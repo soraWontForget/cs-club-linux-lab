@@ -6,6 +6,8 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         bash \
         coreutils \
+        findutils \
+        grep \
         hostname \
         less \
         man-db \

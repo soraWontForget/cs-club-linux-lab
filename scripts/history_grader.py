@@ -16,6 +16,8 @@ class Command:
     tokens: tuple[str, ...]
     source: str
     line_number: int
+    source_line: str = ""
+    segment_index: int = 0
 
     @property
     def name(self) -> str:
@@ -26,6 +28,10 @@ class Command:
     @property
     def args(self) -> tuple[str, ...]:
         return self.tokens[1:]
+
+    @property
+    def history_line(self) -> str:
+        return self.source_line or self.raw
 
 
 @dataclass(frozen=True)
@@ -114,6 +120,51 @@ def split_shell_segments(command_line: str) -> list[str]:
     return segments
 
 
+def command_line_has_pipe(command_line: str) -> bool:
+    """Return True when a command line contains an unquoted shell pipe."""
+    quote: str | None = None
+    escaped = False
+    index = 0
+
+    while index < len(command_line):
+        char = command_line[index]
+
+        if escaped:
+            escaped = False
+            index += 1
+            continue
+
+        if char == "\\":
+            escaped = True
+            index += 1
+            continue
+
+        if quote:
+            if char == quote:
+                quote = None
+            index += 1
+            continue
+
+        if char in {"'", '"'}:
+            quote = char
+            index += 1
+            continue
+
+        if char == "|":
+            previous_char = command_line[index - 1] if index > 0 else ""
+            next_char = command_line[index + 1] if index + 1 < len(command_line) else ""
+            if previous_char != "|" and next_char != "|":
+                return True
+
+        index += 1
+
+    return False
+
+
+def is_from_pipeline(command: Command) -> bool:
+    return command_line_has_pipe(command.history_line)
+
+
 def tokenize(segment: str) -> tuple[str, ...]:
     try:
         return tuple(shlex.split(segment, comments=False, posix=True))
@@ -129,7 +180,7 @@ def parse_history_lines(lines: Iterable[str], source: str = "<memory>") -> list[
         if not stripped or stripped.startswith("#"):
             continue
 
-        for segment in split_shell_segments(stripped):
+        for segment_index, segment in enumerate(split_shell_segments(stripped)):
             tokens = tokenize(segment)
             if tokens:
                 commands.append(
@@ -138,6 +189,8 @@ def parse_history_lines(lines: Iterable[str], source: str = "<memory>") -> list[
                         tokens=tokens,
                         source=source,
                         line_number=line_number,
+                        source_line=stripped,
+                        segment_index=segment_index,
                     )
                 )
 
@@ -336,7 +389,7 @@ def grade(commands: Iterable[Command], checks: Iterable[Check]) -> list[dict[str
                 "label": check.label,
                 "passed": match is not None,
                 "match": {
-                    "command": match.raw,
+                    "command": match.history_line if is_from_pipeline(match) else match.raw,
                     "source": match.source,
                     "line": match.line_number,
                 }

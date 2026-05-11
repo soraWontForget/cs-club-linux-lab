@@ -12,6 +12,7 @@ the first time.
 2. [Moving Around the Filesystem](labs/part-02-filesystem-navigation.md)
 3. [Reading Files](labs/part-03-reading-files.md)
 4. [Creating, Copying, Moving, and Deleting](labs/part-04-creating-copying-moving-deleting.md)
+5. [Searching, Filtering, and Pipes](labs/part-05-searching-filtering-pipes.md)
 
 ## Part 1: Terminal Survival
 
@@ -68,6 +69,21 @@ Students learn basic file management and safer deletion habits:
 - `rmdir`
 - `rm -i`
 - `rm -r`
+
+## Part 5: Searching, Filtering, and Pipes
+
+Students learn how to locate files, search inside files, and connect commands
+with pipes:
+
+- `find`
+- `find . -name "*.txt"`
+- `find . -type f`
+- `grep`
+- `grep -i`
+- `|`
+- `sort`
+- `uniq`
+- `cut`
 
 ## Setup
 
@@ -131,6 +147,12 @@ Start Part 4 with:
 start-lab4
 ```
 
+Start Part 5 with:
+
+```bash
+start-lab5
+```
+
 Check progress with:
 
 ```bash
@@ -138,6 +160,7 @@ grade-part1
 grade-part2
 grade-part3
 grade-part4
+grade-part5
 ```
 
 The container is intentionally disposable. When the student exits, command
@@ -152,12 +175,13 @@ scripts/grade_part_01_terminal_survival.py
 scripts/grade_part_02_filesystem_navigation.py
 scripts/grade_part_03_reading_files.py
 scripts/grade_part_04_file_management.py
+scripts/grade_part_05_searching_filtering.py
 ```
 
 The Docker image configures the student shell to append history after each
-command and provides `grade-part1`, `grade-part2`, `grade-part3`, and
-`grade-part4` aliases. For local testing outside Docker, you may need to run
-`history -a` before using a checker.
+command and provides `grade-part1`, `grade-part2`, `grade-part3`,
+`grade-part4`, and `grade-part5` aliases. For local testing outside Docker, you
+may need to run `history -a` before using a checker.
 
 Students should use their host operating system's screenshot tool to capture
 the terminal after running the relevant `grade-part` command. The container

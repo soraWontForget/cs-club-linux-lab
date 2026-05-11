@@ -1,0 +1,4 @@
+Week 2 Report
+
+Students practiced filesystem navigation.
+One error was reported for a missing directory.

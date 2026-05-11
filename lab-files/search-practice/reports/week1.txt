@@ -1,0 +1,4 @@
+Week 1 Report
+
+Students practiced terminal survival commands.
+One warning was reported for a mistyped command.

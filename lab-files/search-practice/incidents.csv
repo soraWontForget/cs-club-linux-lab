@@ -1,0 +1,7 @@
+error,auth,login failed
+warning,disk,low space
+info,ui,page loaded
+error,api,timeout
+warning,network,slow response
+info,backup,completed
+error,database,connection refused
