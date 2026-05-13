@@ -15,6 +15,7 @@ the first time.
 - Part 5: [Searching, Filtering, and Pipes](labs/part-05-searching-filtering-pipes.md)
 - Part 6: [Redirection and Pipelines](labs/part-06-redirection-pipes.md)
 - Part 7: [File Permissions](labs/part-07-file-permissions.md)
+- Part 8: [Processes and Jobs](labs/part-08-processes.md)
 
 ## Part 1: Terminal Survival
 
@@ -110,6 +111,19 @@ user and groups, and make a script executable:
 - `chmod +x`
 - `./scripts/hello.sh`
 
+## Part 8: Processes and Jobs
+
+Students learn how to inspect processes, use shell job control, and stop a
+process by PID:
+
+- `ps`
+- `top`
+- `sleep 100`
+- `jobs`
+- `fg`
+- `bg`
+- `kill PID`
+
 ## Setup
 
 ### Local Clone
@@ -190,6 +204,12 @@ Start Part 7 with:
 start-lab7
 ```
 
+Start Part 8 with:
+
+```bash
+start-lab8
+```
+
 Check progress with:
 
 ```bash
@@ -200,6 +220,7 @@ grade-part4
 grade-part5
 grade-part6
 grade-part7
+grade-part8
 ```
 
 The container is intentionally disposable. When the student exits, command
@@ -217,13 +238,14 @@ scripts/grade_part_04_file_management.py
 scripts/grade_part_05_searching_filtering.py
 scripts/grade_part_06_redirection_pipes.py
 scripts/grade_part_07_permissions.py
+scripts/grade_part_08_processes.py
 ```
 
 The Docker image configures the student shell to append history after each
 command and provides `grade-part1`, `grade-part2`, `grade-part3`,
-`grade-part4`, `grade-part5`, `grade-part6`, and `grade-part7` aliases. For
-local testing outside Docker, you may need to run `history -a` before using a
-checker.
+`grade-part4`, `grade-part5`, `grade-part6`, `grade-part7`, and `grade-part8`
+aliases. For local testing outside Docker, you may need to run `history -a`
+before using a checker.
 
 Students should use their host operating system's screenshot tool to capture
 the terminal after running the relevant `grade-part` command. The container

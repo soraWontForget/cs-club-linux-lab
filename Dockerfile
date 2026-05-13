@@ -13,6 +13,7 @@ RUN apt-get update \
         man-db \
         manpages \
         ncurses-bin \
+        procps \
         python3 \
         tree \
         tzdata \

@@ -14,6 +14,7 @@ alias grade-part4='history -a; "$LAB_HOME"/scripts/grade_part_04_file_management
 alias grade-part5='history -a; "$LAB_HOME"/scripts/grade_part_05_searching_filtering.py --history-file "$HISTFILE"'
 alias grade-part6='history -a; "$LAB_HOME"/scripts/grade_part_06_redirection_pipes.py --history-file "$HISTFILE" --lab-home "$LAB_HOME"'
 alias grade-part7='history -a; "$LAB_HOME"/scripts/grade_part_07_permissions.py --history-file "$HISTFILE" --lab-home "$LAB_HOME"'
+alias grade-part8='history -a; "$LAB_HOME"/scripts/grade_part_08_processes.py --history-file "$HISTFILE"'
 alias start-lab='less "$LAB_HOME"/labs/part-01-terminal-survival.md'
 alias start-lab1='less "$LAB_HOME"/labs/part-01-terminal-survival.md'
 alias start-lab2='less "$LAB_HOME"/labs/part-02-filesystem-navigation.md'
@@ -22,6 +23,7 @@ alias start-lab4='less "$LAB_HOME"/labs/part-04-creating-copying-moving-deleting
 alias start-lab5='less "$LAB_HOME"/labs/part-05-searching-filtering-pipes.md'
 alias start-lab6='less "$LAB_HOME"/labs/part-06-redirection-pipes.md'
 alias start-lab7='less "$LAB_HOME"/labs/part-07-file-permissions.md'
+alias start-lab8='less "$LAB_HOME"/labs/part-08-processes.md'
 
 cd "$LAB_HOME" || exit
 
@@ -33,4 +35,5 @@ echo "Start Part 4: start-lab4"
 echo "Start Part 5: start-lab5"
 echo "Start Part 6: start-lab6"
 echo "Start Part 7: start-lab7"
-echo "Check progress: grade-part1, grade-part2, grade-part3, grade-part4, grade-part5, grade-part6, or grade-part7"
+echo "Start Part 8: start-lab8"
+echo "Check progress: grade-part1, grade-part2, grade-part3, grade-part4, grade-part5, grade-part6, grade-part7, or grade-part8"
