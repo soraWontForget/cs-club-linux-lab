@@ -13,6 +13,7 @@ the first time.
 - Part 3: [Reading Files](labs/part-03-reading-files.md)
 - Part 4: [Creating, Copying, Moving, and Deleting](labs/part-04-creating-copying-moving-deleting.md)
 - Part 5: [Searching, Filtering, and Pipes](labs/part-05-searching-filtering-pipes.md)
+- Part 6: [Redirection and Pipelines](labs/part-06-redirection-pipes.md)
 - Part 7: [File Permissions](labs/part-07-file-permissions.md)
 
 ## Part 1: Terminal Survival
@@ -85,6 +86,17 @@ with pipes:
 - `sort`
 - `uniq`
 - `cut`
+
+## Part 6: Redirection and Pipelines
+
+Students learn how to control where command output and error messages go:
+
+- `>`
+- `>>`
+- `<`
+- `|`
+- `tee`
+- `2>`
 
 ## Part 7: File Permissions
 
@@ -166,6 +178,12 @@ Start Part 5 with:
 start-lab5
 ```
 
+Start Part 6 with:
+
+```bash
+start-lab6
+```
+
 Start Part 7 with:
 
 ```bash
@@ -180,6 +198,7 @@ grade-part2
 grade-part3
 grade-part4
 grade-part5
+grade-part6
 grade-part7
 ```
 
@@ -196,13 +215,15 @@ scripts/grade_part_02_filesystem_navigation.py
 scripts/grade_part_03_reading_files.py
 scripts/grade_part_04_file_management.py
 scripts/grade_part_05_searching_filtering.py
+scripts/grade_part_06_redirection_pipes.py
 scripts/grade_part_07_permissions.py
 ```
 
 The Docker image configures the student shell to append history after each
 command and provides `grade-part1`, `grade-part2`, `grade-part3`,
-`grade-part4`, `grade-part5`, and `grade-part7` aliases. For local testing
-outside Docker, you may need to run `history -a` before using a checker.
+`grade-part4`, `grade-part5`, `grade-part6`, and `grade-part7` aliases. For
+local testing outside Docker, you may need to run `history -a` before using a
+checker.
 
 Students should use their host operating system's screenshot tool to capture
 the terminal after running the relevant `grade-part` command. The container
