@@ -17,6 +17,7 @@ the first time.
 - Part 7: [File Permissions](labs/part-07-file-permissions.md)
 - Part 8: [Processes and Jobs](labs/part-08-processes.md)
 - Part 9: [System Information and Environment](labs/part-09-system-information.md)
+- Part 10: [Mini Final Challenge](labs/part-10-mini-final-challenge.md)
 
 ## Part 1: Terminal Survival
 
@@ -138,6 +139,19 @@ uptime, environment variables, and the command search path:
 - `env`
 - `echo $PATH`
 
+## Part 10: Mini Final Challenge
+
+Students combine earlier skills to find error messages in a log file, save
+the results, make a backup, move the submission file, and confirm the final
+directory contents:
+
+- `mkdir`
+- `grep -i`
+- `>`
+- `cp`
+- `mv`
+- `ls -l`
+
 ## Setup
 
 ### Local Clone
@@ -230,6 +244,12 @@ Start Part 9 with:
 start-lab9
 ```
 
+Start Part 10 with:
+
+```bash
+start-lab10
+```
+
 Check progress with:
 
 ```bash
@@ -242,6 +262,7 @@ grade-part6
 grade-part7
 grade-part8
 grade-part9
+grade-part10
 ```
 
 The container is intentionally disposable. When the student exits, command
@@ -261,13 +282,14 @@ scripts/grade_part_06_redirection_pipes.py
 scripts/grade_part_07_permissions.py
 scripts/grade_part_08_processes.py
 scripts/grade_part_09_system_information.py
+scripts/grade_part_10_mini_final_challenge.py
 ```
 
 The Docker image configures the student shell to append history after each
 command and provides `grade-part1`, `grade-part2`, `grade-part3`,
-`grade-part4`, `grade-part5`, `grade-part6`, `grade-part7`, `grade-part8`, and
-`grade-part9` aliases. For local testing outside Docker, you may need to run
-`history -a` before using a checker.
+`grade-part4`, `grade-part5`, `grade-part6`, `grade-part7`, `grade-part8`,
+`grade-part9`, and `grade-part10` aliases. For local testing outside Docker,
+you may need to run `history -a` before using a checker.
 
 Students should use their host operating system's screenshot tool to capture
 the terminal after running the relevant `grade-part` command. The container
