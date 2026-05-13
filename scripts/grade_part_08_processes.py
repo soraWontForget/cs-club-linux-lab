@@ -116,6 +116,43 @@ def count_result(
     }
 
 
+def ordered_sequence_result(
+    *,
+    activity: str,
+    label: str,
+    commands: list[Command],
+    matchers: tuple[Callable[[Command], bool], ...],
+) -> dict[str, object]:
+    matched_commands: list[Command] = []
+    search_start = 0
+
+    for matcher in matchers:
+        for index in range(search_start, len(commands)):
+            command = commands[index]
+            if matcher(command):
+                matched_commands.append(command)
+                search_start = index + 1
+                break
+        else:
+            return {
+                "activity": activity,
+                "label": label,
+                "passed": False,
+                "match": None,
+            }
+
+    return {
+        "activity": activity,
+        "label": label,
+        "passed": True,
+        "match": {
+            "commands": [command.raw for command in matched_commands],
+            "source": matched_commands[0].source,
+            "line": matched_commands[0].line_number,
+        },
+    }
+
+
 CHECKS: tuple[Check, ...] = (
     Check("Before You Start", "Go to `/home/student/lab`", is_cd("/home/student/lab")),
     Check("Activity 1", "Run `ps`", is_command("ps", exact_flags=set(), no_targets=True)),
@@ -141,12 +178,18 @@ def grade(commands):
                 matcher=is_simple("jobs"),
                 required_count=2,
             ),
-            count_result(
+            ordered_sequence_result(
                 activity="Activity 6",
-                label="Run `jobs` after starting `sleep 100 &`",
+                label="Run `sleep 100 &`, `jobs`, then `fg` in order",
                 commands=command_list,
-                matcher=is_simple("jobs"),
-                required_count=3,
+                matchers=(is_background_sleep_100, is_simple("jobs"), is_job_control("fg")),
+            ),
+            count_result(
+                activity="Activity 7",
+                label="Run `sleep 100 &` again before finding the PID",
+                commands=command_list,
+                matcher=is_background_sleep_100,
+                required_count=2,
             ),
             count_result(
                 activity="Activity 7",

@@ -141,19 +141,31 @@ Run:
 ```bash
 sleep 100 &
 jobs
+fg
 ```
 
-The `&` starts the command in the background immediately.
+The `&` starts the command in the background immediately. `jobs` shows that the
+shell is managing it. `fg` brings it back to the foreground.
+
+When `sleep 100` is in the foreground again, press `Ctrl-C` to cancel it and
+return to the prompt.
 
 Checkpoint:
 
 - What job number did the shell print?
 - What PID did the shell print?
-- How is `sleep 100 &` different from plain `sleep 100`?
+- What did `jobs` show before you ran `fg`?
+- What did `fg` bring back to the foreground?
 
 ## Activity 7: Find the PID and Stop the Process
 
-Run:
+Start a new background process:
+
+```bash
+sleep 100 &
+```
+
+Then run:
 
 ```bash
 ps
@@ -222,7 +234,8 @@ Recommended flow:
 3. Narrate the difference between `Ctrl-Z` and `Ctrl-C` before students start
    `sleep 100`.
 4. Make students compare the job number from `jobs` with the PID from `ps`.
-5. Emphasize that `kill PID` should target only the `sleep 100` process they
+5. Use Activity 6 to connect `sleep 100 &`, `jobs`, and `fg` as one workflow.
+6. Emphasize that `kill PID` should target only the `sleep 100` process they
    created.
 
 Common student questions:

@@ -14,6 +14,8 @@ jobs
 fg
 sleep 100 &
 jobs
+fg
+sleep 100 &
 ps
 kill 12345
 jobs
@@ -25,7 +27,7 @@ class GradePartEightTest(unittest.TestCase):
         commands = grader.parse_history_lines(COMPLETE_HISTORY.splitlines())
         results = grader.grade(commands)
 
-        self.assertEqual(len(results), 13)
+        self.assertEqual(len(results), 14)
         self.assertTrue(all(result["passed"] for result in results))
 
     def test_kill_requires_numeric_pid(self):
@@ -65,7 +67,7 @@ class GradePartEightTest(unittest.TestCase):
 
         self.assertTrue(labels["Run `jobs` after pressing `Ctrl-Z`"])
         self.assertTrue(labels["Run `jobs` again after `bg`"])
-        self.assertFalse(labels["Run `jobs` after starting `sleep 100 &`"])
+        self.assertFalse(labels["Run `sleep 100 &`, `jobs`, then `fg` in order"])
         self.assertFalse(labels["Run `jobs` after `kill PID`"])
 
     def test_ps_count_requires_second_bare_ps(self):
@@ -83,6 +85,20 @@ class GradePartEightTest(unittest.TestCase):
 
         self.assertTrue(labels["Run `bg`"])
         self.assertTrue(labels["Run `fg`"])
+
+    def test_background_jobs_fg_sequence_must_be_in_order(self):
+        commands = grader.parse_history_lines(["jobs", "fg", "sleep 100 &"])
+        results = grader.grade(commands)
+        labels = {result["label"]: result["passed"] for result in results}
+
+        self.assertFalse(labels["Run `sleep 100 &`, `jobs`, then `fg` in order"])
+
+    def test_activity_seven_requires_second_background_sleep(self):
+        commands = grader.parse_history_lines(["sleep 100 &", "jobs", "fg", "ps", "kill 12345", "jobs"])
+        results = grader.grade(commands)
+        labels = {result["label"]: result["passed"] for result in results}
+
+        self.assertFalse(labels["Run `sleep 100 &` again before finding the PID"])
 
 
 if __name__ == "__main__":
