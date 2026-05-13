@@ -8,11 +8,12 @@ the first time.
 
 ## Lab Parts
 
-1. [Terminal Survival](labs/part-01-terminal-survival.md)
-2. [Moving Around the Filesystem](labs/part-02-filesystem-navigation.md)
-3. [Reading Files](labs/part-03-reading-files.md)
-4. [Creating, Copying, Moving, and Deleting](labs/part-04-creating-copying-moving-deleting.md)
-5. [Searching, Filtering, and Pipes](labs/part-05-searching-filtering-pipes.md)
+- Part 1: [Terminal Survival](labs/part-01-terminal-survival.md)
+- Part 2: [Moving Around the Filesystem](labs/part-02-filesystem-navigation.md)
+- Part 3: [Reading Files](labs/part-03-reading-files.md)
+- Part 4: [Creating, Copying, Moving, and Deleting](labs/part-04-creating-copying-moving-deleting.md)
+- Part 5: [Searching, Filtering, and Pipes](labs/part-05-searching-filtering-pipes.md)
+- Part 7: [File Permissions](labs/part-07-file-permissions.md)
 
 ## Part 1: Terminal Survival
 
@@ -85,6 +86,18 @@ with pipes:
 - `uniq`
 - `cut`
 
+## Part 7: File Permissions
+
+Students learn how to read permission strings, connect permissions to their
+user and groups, and make a script executable:
+
+- `ls -l`
+- `id`
+- `groups`
+- `chmod`
+- `chmod +x`
+- `./scripts/hello.sh`
+
 ## Setup
 
 ### Local Clone
@@ -153,6 +166,12 @@ Start Part 5 with:
 start-lab5
 ```
 
+Start Part 7 with:
+
+```bash
+start-lab7
+```
+
 Check progress with:
 
 ```bash
@@ -161,6 +180,7 @@ grade-part2
 grade-part3
 grade-part4
 grade-part5
+grade-part7
 ```
 
 The container is intentionally disposable. When the student exits, command
@@ -176,12 +196,13 @@ scripts/grade_part_02_filesystem_navigation.py
 scripts/grade_part_03_reading_files.py
 scripts/grade_part_04_file_management.py
 scripts/grade_part_05_searching_filtering.py
+scripts/grade_part_07_permissions.py
 ```
 
 The Docker image configures the student shell to append history after each
 command and provides `grade-part1`, `grade-part2`, `grade-part3`,
-`grade-part4`, and `grade-part5` aliases. For local testing outside Docker, you
-may need to run `history -a` before using a checker.
+`grade-part4`, `grade-part5`, and `grade-part7` aliases. For local testing
+outside Docker, you may need to run `history -a` before using a checker.
 
 Students should use their host operating system's screenshot tool to capture
 the terminal after running the relevant `grade-part` command. The container
