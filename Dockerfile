@@ -22,6 +22,7 @@ RUN rm -f /etc/dpkg/dpkg.cfg.d/docker \
         curl \
         man-db \
         manpages \
+        python3 \
     && apt-get install -y --reinstall \
         coreutils \
         grep \
