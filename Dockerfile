@@ -8,15 +8,19 @@ RUN apt-get update \
         coreutils \
         findutils \
         grep \
-        hostname \
+        sed \
+        gawk \
+        procps \
+        psmisc \
         less \
+        nano \
+        vim-tiny \
+        tree \
+        file \
+        curl \
         man-db \
         manpages \
-        ncurses-bin \
-        procps \
-        python3 \
-        tree \
-        tzdata \
+        manpages-posix \
     && rm -rf /var/lib/apt/lists/*
 
 RUN useradd --create-home --shell /bin/bash student
