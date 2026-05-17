@@ -20,7 +20,6 @@ RUN apt-get update \
         curl \
         man-db \
         manpages \
-        manpages-posix \
     && rm -rf /var/lib/apt/lists/*
 
 RUN useradd --create-home --shell /bin/bash student
