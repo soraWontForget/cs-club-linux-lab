@@ -3,6 +3,7 @@ FROM debian:bookworm-slim
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN rm -f /etc/dpkg/dpkg.cfg.d/docker \
+          /etc/dpkg/dpkg.cfg.d/docker-apt-speedup \
     && apt-get update \
     && apt-get install -y --no-install-recommends \
         bash \
@@ -21,6 +22,14 @@ RUN rm -f /etc/dpkg/dpkg.cfg.d/docker \
         curl \
         man-db \
         manpages \
+    && apt-get install -y --reinstall \
+        coreutils \
+        grep \
+        findutils \
+        sed \
+        procps \
+        psmisc \
+        file \
     && rm -rf /var/lib/apt/lists/*
 
 RUN useradd --create-home --shell /bin/bash student
